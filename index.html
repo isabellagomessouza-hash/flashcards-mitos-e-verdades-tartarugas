@@ -1,138 +1,141 @@
-<!DOCTYPE html> 
-<html lang="pt-br"> 
-  <head> 
-    <meta charset="UTF-8" /> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-    <title>Flashcards de Mitos e Verdades</title> 
-    <style>
-      body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #eef5f6;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-      }
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flashcards de Mitos e Verdades</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #eef5f6;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
 
-      header {
-        text-align: center;
-        margin-bottom: 30px;
-        color: #2c3e50;
-      }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
 
-      header p {
-        color: #7f8c8d;
-        font-style: italic;
-      }
+    header p {
+      color: #7f8c8d;
+      font-style: italic;
+    }
 
-      .flashcard-container {
-        width: 380px;
-        height: 280px;
-        perspective: 1000px;
-        cursor: pointer;
-      }
+    .flashcard-container {
+      width: 380px;
+      height: 280px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
 
-      .flashcard-inner {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-        transition: transform 0.6s;
-        transform-style: preserve-3d;
-      }
+    .flashcard-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
 
-      .flashcard-container.flipped .flashcard-inner {
-        transform: rotateY(180deg);
-      }
+    .flashcard-container.flipped .flashcard-inner {
+      transform: rotateY(180deg);
+    }
 
-      .card-front, .card-back {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        border-radius: 15px;
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 25px;
-        box-sizing: border-box;
-      }
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: 15px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 25px;
+      box-sizing: border-box;
+    }
 
-      /* FRENTE: Imagem da tartaruga marrom nadando debaixo d'água (L-2p8fapOA8) */
-      .card-front {
-        background: #2c3e50 url('https://images.unsplash.com/photo-1518467166-76b01cefb334?auto=format&fit=crop&w=600&q=80') no-repeat center/cover;
-        color: white;
-      }
+    /* FRENTE: Imagem da tartaruga marrom nadando debaixo d'água (L-2p8fapOA8) */
+    .card-front {
+      background: #2c3e50 url('https://images.unsplash.com/photo-1518467166-76b01cefb334?auto=format&fit=crop&w=600&q=80') no-repeat center/cover;
+      color: white;
+    }
 
-      /* VERSO: Imagem da outra tartaruga marinha marrom (iRgbLpf50IE) */
-      .card-back {
-        background: #16a085 url('https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?auto=format&fit=crop&w=600&q=80') no-repeat center/cover;
-        color: white;
-        transform: rotateY(180deg);
-      }
+    /* VERSO: Imagem da outra tartaruga marinha marrom (iRgbLpf50IE) */
+    .card-back {
+      background: #16a085 url('https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?auto=format&fit=crop&w=600&q=80') no-repeat center/cover;
+      color: white;
+      transform: rotateY(180deg);
+    }
 
-      .badge {
-        font-weight: bold;
-        text-transform: uppercase;
-        font-size: 1.2rem;
-        letter-spacing: 1px;
-        margin-bottom: 15px;
-        background-color: rgba(0, 0, 0, 0.7);
-        padding: 5px 15px;
-        border-radius: 20px;
-      }
+    .badge {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 5px 15px;
+      border-radius: 20px;
+    }
 
-      .text-content {
-        font-size: 1.15rem;
-        line-height: 1.5;
-        margin: 0;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9), 0 0 4px rgba(0, 0, 0, 0.7);
-      }
+    .text-content {
+      font-size: 1.15rem;
+      line-height: 1.5;
+      margin: 0;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9), 0 0 4px rgba(0, 0, 0, 0.7);
+    }
 
-      footer {
-        margin-top: 40px;
-        color: #bdc3c7;
-        font-size: 0.9rem;
-      }
-    </style> 
-  </head> 
-  <body> 
-    <header> 
-      <h1>Mitos e Verdades do Mundo Animal</h1>
-      <p>Clique no card para revelar a resposta</p>
-    </header> 
- 
-    <main> 
-      <div class="flashcard-container" onclick="toggleFlip(this)">
-        <div class="flashcard-inner">
-          
-          <div class="card-front">
-            <span class="badge" style="color: #ff6b6b;">Mito ❌</span>
-            <p class="text-content">"As tartarugas choram de tristeza ao saírem da água."</p>
-          </div>
-          
-          <div class="card-back">
-            <span class="badge" style="color: #1dd1a1;">Verdade ✅</span>
-            <p class="text-content">Na verdade, as lágrimas são uma resposta biológica: esses animais possuem glândulas especiais para excretar o excesso de sal consumido no mar.</p>
-          </div>
+    footer {
+      margin-top: 40px;
+      color: #bdc3c7;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
 
+  <header>
+    <h1>Mitos e Verdades do Mundo Animal</h1>
+    <p>Clique no card para revelar a resposta</p>
+  </header>
+
+  <main>
+    <div class="flashcard-container" onclick="toggleFlip(this)">
+      <div class="flashcard-inner">
+        
+        <div class="card-front">
+          <span class="badge" style="color: #ff6b6b;">Mito ❌</span>
+          <p class="text-content">"As tartarugas choram de tristeza ao saírem da água."</p>
         </div>
-      </div>
-    </main> 
- 
-    <footer> 
-      <p>Flashcard Interativo &copy; 2026</p>
-    </footer> 
+        
+        <div class="card-back">
+          <span class="badge" style="color: #1dd1a1;">Verdade ✅</span>
+          <p class="text-content">Na verdade, as lágrimas são uma resposta biológica: esses animais possuem glândulas especiais para excretar o excesso de sal consumido no mar.</p>
+        </div>
 
-    <script>
-      function toggleFlip(card) {
-        card.classList.toggle('flipped');
-      }
-    </script>
-  </body> 
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Flashcard Interativo &copy; 2026</p>
+  </footer>
+
+  <script>
+    function toggleFlip(card) {
+      card.classList.toggle('flipped');
+    }
+  </script>
+
+</body>
 </html>
